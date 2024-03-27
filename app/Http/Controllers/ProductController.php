@@ -35,7 +35,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|min:4',
-            'price' => 'required|min:7'
+            'price' => 'required|integer|min:1000000'
         ]);
         $prod = new Product;
         $prod->name = $request->name;
