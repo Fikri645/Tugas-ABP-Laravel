@@ -17,7 +17,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Harga</th>
-                    <th>Varian</th>
+                    {{-- <th>Varian</th> --}}
                     <th>Aksi</th>
                 </tr>
                 @php $i = 1 @endphp
@@ -26,14 +26,14 @@
                         <td>{{ $i++ }}</td>
                         <td>{{ $d->name }}</td>
                         <td>{{ $d->price }}</td>
-                        <td>
+                        {{-- <td>
                             <ul>
                                 @foreach($d->variants as $v)
                                 <li>{{ $v->name }}</li>
                                 <li>Stock:{{ $v->stock}}</li>
                                 @endforeach
                             </ul>
-                        </td>
+                        </td> --}}
                         <td>
                             <a class="btn btn-warning" href="">Edit</a>
                             <a class="btn btn-danger" href="">Hapus</a>
