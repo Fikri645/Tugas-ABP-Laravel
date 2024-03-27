@@ -18,7 +18,7 @@ class SiteController extends Controller
         ]);
     }
     public function autentikasi(Request $request){
-        if (Auth::attempt(['email' => $request->usr, 'password' => $request->pwd])) {
+        if (Auth::attempt(['name' => $request->usr, 'password' => $request->pwd])) {
             return redirect('/produk');
         } else {
             return redirect('/login')->with('message', 'Username / password salah');
