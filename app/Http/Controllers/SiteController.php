@@ -24,4 +24,8 @@ class SiteController extends Controller
             return redirect('/login')->with('message', 'Username / password salah');
         }
     }
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
+    }
 }
