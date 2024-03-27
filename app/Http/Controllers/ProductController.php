@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-
+use Illuminate\Foundation\Validation\ValidatesRequests;
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    use ValidatesRequests;
     public function index()
     {
         $prods = Product::get();
@@ -33,6 +34,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'price' => 'required|min:100000'
+        ]);
         $prod = new Product;
         $prod->name = $request->name;
         $prod->price = $request->price;
