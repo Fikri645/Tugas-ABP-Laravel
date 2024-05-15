@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -13,13 +14,9 @@ class ProductController extends Controller
     public function index()
     {
         $prods = Product::get();
-        if (request()->segment(1) == 'api') return response()->json([
-            'error' => false,
-            'list' => $prods,
-        ]);
         return view('view_product', [
             'title' => 'Daftar Produk',
-            'data' => $prods, 
+            'data' => $prods
         ]);
     }
 
@@ -38,13 +35,13 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|min:4',
-            'price' => 'required|max:1000000',
+            'price' => 'required|integer|min:1000000'
         ]);
         $prod = new Product;
         $prod->name = $request->name;
         $prod->price = $request->price;
         $prod->save();
-        return redirect('/product')->with('message', 'Data berhasil disimpan');
+        return redirect('/produk')->with('message', 'Produk berhasil ditambah');
     }
 
     /**

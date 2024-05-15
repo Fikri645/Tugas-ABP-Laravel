@@ -1,16 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/login', 'login_form')->name('login');
+Route::view('/login', 'form_login')->name('login');
 
-Route::get('/lihat-data', [SiteController::class, 'view_data']);
-Route::post('/auth', [SiteController::class, 'autentikasi']);
-Route::post('/logout', [SiteController::class, 'logout']);
-Route::resource('produk', ProductController::class)->middleware('auth');
+Route::get('/lihat-data', 'App\Http\Controllers\SiteController@view_data');
+Route::post('/auth', 'App\Http\Controllers\SiteController@autentikasi');
+Route::get('/logout', 'App\Http\Controllers\SiteController@logout');
+
+Route::resource('product', ProductController::class)->middleware('auth');
+
+Route::get('/lat1', 'App\Http\Controllers\Lat1Controller@index');
+
+Route::get('/lat1/m2', 'App\Http\Controllers\Lat1Controller@method2'); 
